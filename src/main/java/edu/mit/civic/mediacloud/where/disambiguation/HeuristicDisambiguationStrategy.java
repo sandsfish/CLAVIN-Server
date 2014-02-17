@@ -40,15 +40,15 @@ public class HeuristicDisambiguationStrategy implements DisambiguationStrategy {
     @Override
     public List<ResolvedLocation> select(CustomLuceneLocationResolver resolver, List<List<ResolvedLocation>> allPossibilities) {
             
-        logger.info("Starting with "+allPossibilities.size()+" lists to do:");
+        // logger.info("Starting with "+allPossibilities.size()+" lists to do:");
         // print all of them
-        for( List<ResolvedLocation> candidates: allPossibilities){
-            ResolvedLocation firstCandidate = candidates.get(0);
-            logger.info("  Location: "+firstCandidate.location.text+"@"+firstCandidate.location.position);
-            for( ResolvedLocation candidate: candidates){
-                GenericPass.logResolvedLocationInfo(candidate);
-            }
-        }
+        // for( List<ResolvedLocation> candidates: allPossibilities){
+        //     ResolvedLocation firstCandidate = candidates.get(0);
+            // logger.info("  Location: "+firstCandidate.location.text+"@"+firstCandidate.location.position);
+            // for( ResolvedLocation candidate: candidates){
+            //     GenericPass.logResolvedLocationInfo(candidate);
+            // }
+        // }
 
         // all this does is run the chain we set up already
         List<ResolvedLocation> bestCandidates = chain.disambiguate(allPossibilities);

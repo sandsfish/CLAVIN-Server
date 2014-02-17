@@ -28,15 +28,15 @@ public abstract class GenericPass {
         }
         List<List<ResolvedLocation>> possibilitiesToRemove = disambiguate(
                 possibilitiesToDo, bestCandidates);
-        for(ResolvedLocation pickedCandidate: bestCandidates){
-            logSelectedCandidate(pickedCandidate);
-            logResolvedLocationInfo(pickedCandidate);
-        }
+        // for(ResolvedLocation pickedCandidate: bestCandidates){
+        //     logSelectedCandidate(pickedCandidate);
+        //     logResolvedLocationInfo(pickedCandidate);
+        // }
         triggerCount+= possibilitiesToRemove.size();
         for (List<ResolvedLocation> toRemove : possibilitiesToRemove) {
             possibilitiesToDo.remove(toRemove);
         }
-        logger.info("Still have " + possibilitiesToDo.size() + " lists to do");
+        // logger.info("Still have " + possibilitiesToDo.size() + " lists to do");
     }
 
     abstract public String getDescription();
