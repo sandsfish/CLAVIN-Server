@@ -62,7 +62,9 @@ From your operating system's command line (instructions tested from OS/X)
 
 7. Run the example program:
 	> `./test.sh`
-	(This should work from OS/X or Linux systems.  On Windows, try running the command directly:
+
+(This should work from OS/X or Linux systems.  On Windows, try running the command directly:
+	
 	> `MAVEN_OPTS="-Xmx2048M" mvn exec:java -Dexec.mainClass="edu.mit.civic.mediacloud.CommandLineParser" -Dexec.args="'./src/test/resources/sample-docs/multi-country.txt'"`
 
 
@@ -70,7 +72,7 @@ Running from the Command Line
 -------
 
 In OS/X or Linux, use the convenience script, passing it the plain-text file that you wish to parse
-	> `./parse.sh "path/to/my/file.txt"
+	> `./parse.sh "path/to/my/file.txt"`
 
 On Windows, try running the full command, passing the path to your file in the final parameter, inside of the single quotes:
 	> `MAVEN_OPTS="-Xmx2048M" mvn exec:java -Dexec.mainClass="edu.mit.civic.mediacloud.CommandLineParser" -Dexec.args="'path/to/my/file.txt'"`
