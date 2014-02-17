@@ -42,7 +42,7 @@ From your operating system's command line (instructions tested from OS/X)
 	> https://github.com/sandsfish/CLAVIN-Server/archive/master.zip
 
 2. Move into the newly-created CLAVIN directory:
-	> `cd CLAVIN`
+	> `cd CLAVIN-Server-master`
 
 3. Download the latest version of allCountries.zip gazetteer file from GeoNames.org:
 	> `curl -O http://download.geonames.org/export/dump/allCountries.zip`
@@ -66,7 +66,7 @@ From your operating system's command line (instructions tested from OS/X)
 	> `MAVEN_OPTS="-Xmx2048M" mvn exec:java -Dexec.mainClass="edu.mit.civic.mediacloud.CommandLineParser" -Dexec.args="'./src/test/resources/sample-docs/multi-country.txt'"`
 
 
-Runnning from the Command Line
+Running from the Command Line
 -------
 
 In OS/X or Linux, use the convenience script, passing it the plain-text file that you wish to parse
