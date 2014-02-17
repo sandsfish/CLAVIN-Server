@@ -1,3 +1,12 @@
+News Parsing Command-Line Add-On
+--------------------------------
+
+This is an identical distribution of the version of the CLAVIN geo-parsing tool MIT C4CM 
+uses, with the small addition of a command-line utility to output a JSON file containing
+the results for a single file.  The setup instructions should be followed as described
+below, and once installed
+
+
 News Parsing Server
 -------------------
 
@@ -11,20 +20,63 @@ Installation
 
 You need maven and java.
 
-You also need to build CLAVIN in order to build the Geonames Gazetteer Index for geoparsing.  
-The idea is that you build all that, and then create a symlink in this directory from 
-`./IndexDirectory` to the index you just built.
-
-If you are developing and using Eclipse, don't forget to do `mvn eclipse:eclipse` in this 
-directory to finish setting things up correctly.
-
 On Ubuntu, make sure you do this:
 ```
 sudo apt-get install maven2
 sudo apt-get install openjdk-7-jdk
 ```
 
-Running
+Separately, Maven can be downloaded here:
+http://maven.apache.org/
+
+Follow the "Installation Instructions section here:
+http://maven.apache.org/download.cgi#Installation
+
+
+How to build & use CLAVIN:
+--------------------------
+
+From your operating system's command line (instructions tested from OS/X)
+
+1. Download the source code and unzip to your preferred location:
+	> https://github.com/sandsfish/CLAVIN-Server/archive/master.zip
+
+2. Move into the newly-created CLAVIN directory:
+	> `cd CLAVIN`
+
+3. Download the latest version of allCountries.zip gazetteer file from GeoNames.org:
+	> `curl -O http://download.geonames.org/export/dump/allCountries.zip`
+
+	If the above command fails, copy the URL into your browser location and hit enter.
+	The file should download.  Move the downloaded 'allCountries.zip' to your CLAVIN
+	directory created in step 1.
+
+4. Unzip the GeoNames gazetteer file in your CLAVIN directory:
+	> `unzip allCountries.zip`
+
+5. Compile the source code:
+	> `mvn compile`
+
+6. Create the Lucene Index (this one-time process will take several minutes):
+	> `MAVEN_OPTS="-Xmx2048M" mvn exec:java -Dexec.mainClass="com.bericotech.clavin.index.IndexDirectoryBuilder"`
+
+7. Run the example program:
+	> `./test.sh`
+	(This should work from OS/X or Linux systems.  On Windows, try running the command directly:
+	> `MAVEN_OPTS="-Xmx2048M" mvn exec:java -Dexec.mainClass="edu.mit.civic.mediacloud.CommandLineParser" -Dexec.args="'./src/test/resources/sample-docs/multi-country.txt'"`
+
+
+Runnning from the Command Line
+-------
+
+In OS/X or Linux, use the convenience script, passing it the plain-text file that you wish to parse
+	> `./parse.sh "path/to/my/file.txt"
+
+On Windows, try running the full command, passing the path to your file in the final parameter, inside of the single quotes:
+	> `MAVEN_OPTS="-Xmx2048M" mvn exec:java -Dexec.mainClass="edu.mit.civic.mediacloud.CommandLineParser" -Dexec.args="'path/to/my/file.txt'"`
+
+
+Running in Server Mode
 -------
 
 Running this command will start up a server on port 8080.
@@ -46,11 +98,4 @@ and to get some basic status hit this url:
 
 ```
 http://localhost:8080/status
-```
-
-Testing
--------
-
-```
-mvn test
 ```
